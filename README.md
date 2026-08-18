@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# b-g678.com
 
-## Getting Started
+Gaming rewards & referral platform. Next.js (App Router) + Tailwind CSS v4, mobile-first, light/dark theme.
 
-First, run the development server:
+## Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- `/` — Home/referral dashboard: hero, feature grid, gift-code strip, referral stats, invite-link tool, popular guides, promotions carousel, game rules, live payouts feed.
+- `/login` — phone + password, remember me.
+- `/register` — phone (country code), WhatsApp OTP verify, password + confirm, invite code (auto-filled from `?ref=`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Theming
 
-## Learn More
+Single source of truth: [`src/app/globals.css`](src/app/globals.css). All colors are CSS variables mapped through `@theme inline`, defined once for light (`:root`) and once for dark (`[data-theme="dark"]`). Change `--brand` / `--brand-dim` to reskin the whole site instantly.
 
-To learn more about Next.js, take a look at the following resources:
+Theme toggle persists to `localStorage` (`src/lib/theme.js`) and is applied via an inline bootstrap script in `layout.js` before first paint (no flash).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> `--color-*` token names must not collide with Tailwind's built-in utility names (e.g. avoid `base`, which would hijack `text-base`'s font-size utility).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Structure
 
-## Deploy on Vercel
+```
+src/
+  app/                 routes (page.js, login/, register/, layout.js)
+  components/
+    ui/                Button, GlassCard, TextInput, PasswordInput, PhoneInput,
+                        ThemeToggle, Logo, SectionHeading
+    layout/             SiteHeader, SiteFooter
+    home/               HeroSection, FeatureGrid, GiftCodeStrip, StatsGrid,
+                        InviteTool, PopularGuides, PromotionsCarousel,
+                        GameRules, LiveActivityFeed, HomeDashboard
+    auth/               AuthShell, LoginForm, RegisterForm
+    providers/          ToastProvider
+  lib/
+    api.js              mock BaaS layer — swap points for a real backend
+    theme.js            light/dark store
+    countryCodes.js     phone dial-code list
+    siteContent.js      guides/promotions/game-rule copy + icons
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Backend integration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Everything routes through `src/lib/api.js`. Replace the mock bodies with real calls (Supabase, Firebase, custom API) — components never change:
+
+- `handleLogin({ phone, password, remember })`
+- `handleRegister({ phone, password, inviteCode })`
+- `sendWhatsAppOTP({ phone })` — expects your own gateway endpoint, not a direct WhatsApp client call
+- `verifyWhatsAppOTP({ requestId, code })`
+- `fetchDashboardStats()`
+
+Icons: `lucide-react` throughout (no emoji, except country flags in the phone dial-code dropdown).

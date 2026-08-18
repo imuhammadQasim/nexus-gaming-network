@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+/* Enables `dark:` utilities, driven by <html data-theme="dark">. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ==========================================================================
+   THEME — single source of truth for the platform's look.
+
+   Tokens are mapped through `@theme inline` so every utility compiles to
+   `var(--<token>)` rather than a baked-in literal. That indirection is what
+   lets the same class list restyle instantly when <html data-theme> flips
+   between light and dark.
+
+   >>> To re-skin the site, change --brand / --brand-dim in the two blocks
+       below. Nothing else needs to change. <<<
+
+   NOTE: token names must not collide with Tailwind's own utility names.
+   `--color-base` is intentionally avoided — it would hijack `text-base`
+   (a font-size utility) and turn it into a text-color utility.
+   ========================================================================== */
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-dim: var(--brand-dim);
+  --color-on-brand: var(--on-brand);
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+/* ---------- LIGHT (default) ---------- */
+:root {
+  color-scheme: light;
+
+  --brand: #b07d0a;
+  --brand-dim: #8f6408;
+  --on-brand: #ffffff;
+
+  --canvas: #f7f8fa;
+  --surface: #ffffff;
+  --surface-2: #f1f3f7;
+  --border: #e3e6ec;
+
+  --ink: #14171f;
+  --ink-muted: #5c6473;
+  --ink-faint: #949bab;
+
+  --success: #16a34a;
+  --danger: #dc2626;
+}
+
+/* ---------- DARK ---------- */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --brand: #f5b301;
+  --brand-dim: #d99a00;
+  --on-brand: #14171f;
+
+  --canvas: #0a0a0b;
+  --surface: #151517;
+  --surface-2: #1c1c1f;
+  --border: #2a2a2e;
+
+  --ink: #f7f7f8;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+
+  --success: #22c55e;
+  --danger: #f04545;
+}
+
+html {
+  height: 100%;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  background: var(--canvas);
+  background-image:
+    radial-gradient(circle at 15% 0%, color-mix(in oklab, var(--brand) 8%, transparent), transparent 45%),
+    radial-gradient(circle at 85% 15%, color-mix(in oklab, var(--brand) 5%, transparent), transparent 40%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+@layer utilities {
+  .glass {
+    background: color-mix(in oklab, var(--surface) 88%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    box-shadow:
+      0 1px 2px color-mix(in oklab, #000 6%, transparent),
+      0 12px 28px -12px color-mix(in oklab, #000 14%, transparent);
+  }
+
+  .glow-brand {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--brand) 35%, transparent),
+      0 8px 24px -6px color-mix(in oklab, var(--brand) 45%, transparent);
+  }
+
+  /* Horizontal snap rail used by the promotions carousel. */
+  .snap-rail {
+    scrollbar-width: none;
+  }
+  .snap-rail::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 color-mix(in oklab, var(--brand) 40%, transparent),
+      0 8px 20px -6px color-mix(in oklab, var(--brand) 40%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 6px color-mix(in oklab, var(--brand) 0%, transparent),
+      0 8px 30px -4px color-mix(in oklab, var(--brand) 55%, transparent);
+  }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+.animate-marquee-vertical {
+  animation: marquee-vertical 22s linear infinite;
+}
+.animate-marquee-vertical:hover {
+  animation-play-state: paused;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-toast-in {
+  animation: toast-in 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-glow,
+  .animate-marquee-vertical,
+  .animate-toast-in {
+    animation: none;
+  }
+}

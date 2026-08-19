@@ -46,6 +46,14 @@ src/
     siteContent.js      guides/promotions/game-rule copy + icons
 ```
 
+## Environment variables
+
+Copy `.env.example` to `.env` and fill in real values (`.env` is gitignored, `.env.example` is committed):
+
+- `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Supabase project (Project Settings > API).
+- `SUPABASE_SERVICE_ROLE_KEY` — server-only, never expose to the client.
+- `NEXT_PUBLIC_SITE_URL` — SSR fallback used to build the referral link before `window.location` is available.
+
 ## Backend integration
 
 Everything routes through `src/lib/api.js`. Replace the mock bodies with real calls (Supabase, Firebase, custom API) — components never change:

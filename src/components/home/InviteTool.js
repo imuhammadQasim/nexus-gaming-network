@@ -14,7 +14,7 @@ export default function InviteTool({ referralCode }) {
   const referralLink =
     typeof window !== "undefined"
       ? `${window.location.origin}/register?ref=${referralCode}`
-      : `https://apexplay.example.com/register?ref=${referralCode}`;
+      : `${process.env.NEXT_PUBLIC_SITE_URL}/register?ref=${referralCode}`;
 
   const handleCopy = async () => {
     try {

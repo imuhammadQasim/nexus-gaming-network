@@ -1,7 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, PartyPopper } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  PartyPopper,
+} from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { PROMOTIONS } from "@/lib/siteContent";
 
@@ -12,7 +17,10 @@ export default function PromotionsCarousel() {
   const scrollByCard = (direction) => {
     const rail = railRef.current;
     if (!rail) return;
-    rail.scrollBy({ left: direction * (rail.clientWidth * 0.8), behavior: "smooth" });
+    rail.scrollBy({
+      left: direction * (rail.clientWidth * 0.8),
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -26,7 +34,7 @@ export default function PromotionsCarousel() {
         />
       </div>
 
-      <div className="mt-8">
+      <div className="mx-auto mt-8 max-w-7xl">
         <div
           ref={railRef}
           className="snap-rail flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:px-8"
@@ -37,7 +45,9 @@ export default function PromotionsCarousel() {
               className="group relative w-72 shrink-0 snap-start overflow-hidden rounded-3xl border border-border bg-surface transition-all duration-300 hover:-translate-y-1.5 hover:border-brand sm:w-80"
             >
               {/* Gradient masthead with an oversized watermark icon. */}
-              <div className={`relative h-40 overflow-hidden bg-linear-to-br ${tint}`}>
+              <div
+                className={`relative h-40 overflow-hidden bg-linear-to-br ${tint}`}
+              >
                 <Icon
                   className="absolute -right-6 -bottom-8 h-40 w-40 text-white/15 transition-transform duration-500 group-hover:scale-110"
                   strokeWidth={1.25}
@@ -53,13 +63,19 @@ export default function PromotionsCarousel() {
                 </span>
 
                 <div className="absolute inset-x-4 bottom-4">
-                  <h3 className="text-lg font-extrabold leading-tight text-white">{title}</h3>
-                  <p className="mt-0.5 text-xs font-semibold text-white/85">{reward}</p>
+                  <h3 className="text-lg font-extrabold leading-tight text-white">
+                    {title}
+                  </h3>
+                  <p className="mt-0.5 text-xs font-semibold text-white/85">
+                    {reward}
+                  </p>
                 </div>
               </div>
 
               <div className="p-5">
-                <p className="min-h-10 text-xs leading-relaxed text-ink-muted">{body}</p>
+                <p className="min-h-10 text-xs leading-relaxed text-ink-muted">
+                  {body}
+                </p>
                 <button
                   type="button"
                   className="mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-on-brand transition-colors hover:bg-brand-dim"

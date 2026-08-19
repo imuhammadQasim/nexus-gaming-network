@@ -13,4 +13,4 @@ export const COUNTRY_CODES = [
   { code: "GB", dial: "+44", flag: "🇬🇧", name: "United Kingdom" },
 ];
 
-export const DEFAULT_DIAL_CODE = "+63";
+export const DEFAULT_DIAL_CODE = "+91";

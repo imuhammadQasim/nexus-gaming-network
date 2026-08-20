@@ -3,7 +3,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import HomeDashboard from "@/components/home/HomeDashboard";
 
 export const metadata = {
-  title: "b-g678.com — Play, Invite, Earn",
+  title: "b-g678.com - Play, Invite, Earn",
   description: "The premium gaming rewards and referral platform.",
 };
 

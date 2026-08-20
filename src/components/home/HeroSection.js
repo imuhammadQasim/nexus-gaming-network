@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Download, LogIn, UserPlus } from "lucide-react";
 import Button from "@/components/ui/Button";
+import { SIGNUP_URL } from "@/lib/siteContent";
 
 /** Top-of-page hero: value prop, live online-player count, and the primary APK download CTA. */
 export default function HeroSection({ onlinePlayers }) {
@@ -36,29 +37,50 @@ export default function HeroSection({ onlinePlayers }) {
           Play More. Earn More. <span className="text-brand">Every Day.</span>
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-sm text-ink-muted sm:text-base">
-          Join the fastest-growing gaming rewards network. Download the app, invite friends, and
-          earn real commission on every referral — instantly.
+          Join the fastest-growing gaming rewards network. Download the app,
+          invite friends, and earn real commission on every referral —
+          instantly.
         </p>
 
         <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <Button variant="primary" className="w-full animate-pulse-glow sm:w-auto">
-            <Download className="h-5 w-5" />
-            Download App Now (APK)
-          </Button>
-          <Link href="/register" className="w-full sm:w-auto">
+          <a
+            href={SIGNUP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto"
+          >
+            <Button
+              variant="primary"
+              className="w-full cursor-pointer animate-pulse-glow sm:w-auto"
+            >
+              <Download className="h-5 w-5" />
+              Download App Now (APK)
+            </Button>
+          </a>
+          <Link
+            href="https://www.bg678lottery7.com/#/pages/login/register?invitationCode=8575750066"
+            target="_blank"
+            className="w-full sm:w-auto cursor-pointer"
+          >
             <Button variant="secondary" className="w-full">
               <UserPlus className="h-4 w-4" />
               Register
             </Button>
           </Link>
-          <Link href="/login" className="w-full sm:w-auto">
+          <Link
+            href="https://www.bg678lottery7.com/#/pages/login/register?invitationCode=8575750066"
+            target="_blank"
+            className="w-full sm:w-auto cursor-pointer"
+          >
             <Button variant="ghost" className="w-full border border-border">
               <LogIn className="h-4 w-4" />
               Login
             </Button>
           </Link>
         </div>
-        <p className="mt-3 text-xs text-ink-faint">Android APK · v2.4.1 · 48MB</p>
+        <p className="mt-3 text-xs text-ink-faint">
+          Android APK · v2.4.1 · 48MB
+        </p>
       </div>
     </section>
   );

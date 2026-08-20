@@ -21,6 +21,11 @@ import {
 // Static marketing content for the home page. Kept out of the components so
 // copy and icons can be edited (or swapped for a CMS fetch) without touching JSX.
 
+export const SIGNUP_URL =
+  "https://www.bg678lottery7.com/#/pages/login/register?invitationCode=8575750066";
+export const TELEGRAM_CHANNEL_URL = "https://t.me/hjjjuit";
+export const TELEGRAM_SUPPORT_URL = "https://t.me/Rina_BG678";
+
 export const FEATURES = [
   {
     Icon: Gift,

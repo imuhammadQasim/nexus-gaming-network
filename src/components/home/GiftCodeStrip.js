@@ -5,6 +5,7 @@ import { Check, Copy, Download, Gamepad2, Gift, PiggyBank } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import { useToast } from "@/components/providers/ToastProvider";
+import { SIGNUP_URL } from "@/lib/siteContent";
 
 /** Highlight strip: platform name, the current invite code, welcome bonus, and the APK CTA. */
 export default function GiftCodeStrip({ inviteCode }) {
@@ -71,12 +72,14 @@ export default function GiftCodeStrip({ inviteCode }) {
               <Download className="h-3.5 w-3.5" />
               Get the App
             </p>
-            <Button
-              variant="primary"
-              className="mt-1.5 w-full px-3 py-1.5 text-xs"
-            >
-              Download
-            </Button>
+            <a href={SIGNUP_URL} target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="primary"
+                className="mt-1.5 w-full px-3 py-1.5 text-xs"
+              >
+                Download
+              </Button>
+            </a>
           </div>
         </div>
       </GlassCard>

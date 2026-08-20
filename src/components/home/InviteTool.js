@@ -12,9 +12,7 @@ export default function InviteTool({ referralCode }) {
   const toast = useToast();
 
   const referralLink =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/register?ref=${referralCode}`
-      : `${process.env.NEXT_PUBLIC_SITE_URL}/register?ref=${referralCode}`;
+    "https://www.bg678lottery7.com/#/pages/login/register?invitationCode=8575750066";
 
   const handleCopy = async () => {
     try {
@@ -32,14 +30,23 @@ export default function InviteTool({ referralCode }) {
       <GlassCard className="mx-auto max-w-6xl p-5 sm:p-6">
         <h2 className="text-sm font-semibold text-ink">My Invite Link</h2>
         <p className="mt-1 text-xs text-ink-muted">
-          Share this link — you earn commission on every friend who signs up and plays.
+          Share this link — you earn commission on every friend who signs up and
+          plays.
         </p>
         <div className="mt-4 flex flex-col gap-3 sm:flex-row">
           <div className="flex-1 truncate rounded-xl border border-border bg-surface px-4 py-3 text-sm text-ink-muted">
             {referralLink}
           </div>
-          <Button onClick={handleCopy} variant="primary" className="shrink-0">
-            {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+          <Button
+            onClick={handleCopy}
+            variant="primary"
+            className="shrink-0 cursor-pointer"
+          >
+            {copied ? (
+              <Check className="h-4 w-4" />
+            ) : (
+              <Copy className="h-4 w-4" />
+            )}
             {copied ? "Copied" : "Copy Link"}
           </Button>
         </div>

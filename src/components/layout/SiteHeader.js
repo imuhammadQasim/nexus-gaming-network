@@ -10,13 +10,15 @@ export default function SiteHeader() {
         <nav className="flex items-center gap-2 text-sm font-medium">
           <ThemeToggle />
           <Link
-            href="/login"
+            href="https://www.bg678lottery7.com/#/pages/login/register?invitationCode=8575750066"
+            target="_blank"
             className="rounded-lg px-3 py-2 text-ink-muted transition-colors hover:text-ink"
           >
             Login
           </Link>
           <Link
-            href="/register"
+            href="https://www.bg678lottery7.com/#/pages/login/register?invitationCode=8575750066"
+            target="_blank"
             className="rounded-lg bg-brand px-4 py-2 text-on-brand transition-colors hover:bg-brand-dim"
           >
             Register

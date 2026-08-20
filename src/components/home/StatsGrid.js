@@ -4,11 +4,19 @@ import GlassCard from "@/components/ui/GlassCard";
 /** Three-up card grid summarizing the signed-in user's referral standing. */
 export default function StatsGrid({ data }) {
   const stats = [
-    { label: "Total Balance", value: `₱${data.totalBalance.toLocaleString()}`, Icon: Wallet },
-    { label: "Total Referrals", value: data.totalReferrals.toLocaleString(), Icon: Users },
+    {
+      label: "Total Balance",
+      value: `₹${data.totalBalance.toLocaleString()}`,
+      Icon: Wallet,
+    },
+    {
+      label: "Total Referrals",
+      value: data.totalReferrals.toLocaleString(),
+      Icon: Users,
+    },
     {
       label: "Commission Earned Today",
-      value: `₱${data.commissionToday.toLocaleString()}`,
+      value: `₹${data.commissionToday.toLocaleString()}`,
       Icon: TrendingUp,
     },
   ];

@@ -11,7 +11,7 @@ function randomEntry() {
   const label = LABELS[Math.floor(Math.random() * LABELS.length)];
   return {
     id: `${Date.now()}-${suffix}`,
-    text: `+₱${amount.toLocaleString()} earned by ${label} ****${suffix} via referral`,
+    text: `+₹${amount.toLocaleString()} earned by ${label} ****${suffix} via referral`,
   };
 }
 

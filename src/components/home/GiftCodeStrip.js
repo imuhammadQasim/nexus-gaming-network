@@ -22,7 +22,8 @@ export default function GiftCodeStrip({ inviteCode }) {
     }
   };
 
-  const tileClass = "rounded-xl border border-border bg-surface-2 p-4 text-center";
+  const tileClass =
+    "rounded-xl border border-border bg-surface-2 p-4 text-center";
   const labelClass =
     "flex items-center justify-center gap-1.5 text-xs font-medium text-ink-muted";
 
@@ -49,7 +50,11 @@ export default function GiftCodeStrip({ inviteCode }) {
             </span>
             <span className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-bold text-brand">
               {inviteCode}
-              {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+              {copied ? (
+                <Check className="h-3.5 w-3.5" />
+              ) : (
+                <Copy className="h-3.5 w-3.5" />
+              )}
             </span>
           </button>
 
@@ -58,7 +63,7 @@ export default function GiftCodeStrip({ inviteCode }) {
               <PiggyBank className="h-3.5 w-3.5" />
               Welcome Bonus
             </p>
-            <p className="mt-1.5 text-sm font-bold text-brand">Up to ₱199</p>
+            <p className="mt-1.5 text-sm font-bold text-brand">Up to ₹199</p>
           </div>
 
           <div className={tileClass}>
@@ -66,7 +71,10 @@ export default function GiftCodeStrip({ inviteCode }) {
               <Download className="h-3.5 w-3.5" />
               Get the App
             </p>
-            <Button variant="primary" className="mt-1.5 w-full px-3 py-1.5 text-xs">
+            <Button
+              variant="primary"
+              className="mt-1.5 w-full px-3 py-1.5 text-xs"
+            >
               Download
             </Button>
           </div>

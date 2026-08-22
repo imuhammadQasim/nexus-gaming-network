@@ -1,4 +1,4 @@
-# b-g678.com
+# Nexus Gaming Network
 
 Gaming rewards & referral platform. Next.js (App Router) + Tailwind CSS v4, mobile-first, light/dark theme.
 
